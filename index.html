@@ -1,0 +1,458 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Table Alter program</title>
+
+<script>
+function addInput(element) {
+// Get the current text content of the cell
+let textContent = element.textContent;
+
+// Create a new input element
+let inputElement = document.createElement('input');
+inputElement.type = 'text';
+inputElement.value = textContent;
+inputElement.classList.add('table-input'); // Add a class for styling
+
+// Clear the cell's content
+element.innerHTML = '';
+
+
+// Append the input element to the cell
+element.appendChild(inputElement);
+
+// Focus on the input element
+inputElement.focus();
+
+// Add an event listener to handle losing focus (e.g., when the user clicks outside the input)
+inputElement.addEventListener('blur', function() {
+    // Get the value from the input
+    let newValue = inputElement.value;
+
+    // Replace the input with the new text
+    element.innerHTML = newValue;
+
+    // Re-attach the onclick event
+    element.onclick = function() { addInput(element); };
+});
+
+// Remove the onclick event temporarily to prevent multiple inputs
+element.onclick = null;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+function altertable() {
+// Get the tbody element
+let tableBody = document.querySelector("thead");
+
+// Get all rows in the tbody
+let rows = tableBody.querySelectorAll("tr");
+var count =0;
+// Loop through each row
+rows.forEach(row => {
+    // Add style to the row
+  
+if (count> 0){
+
+    
+// Get all cells in the row
+    let cells = row.querySelectorAll("td");
+var c2=0;
+    // Loop through each cell
+    
+    if(count%2==1){
+        cells.forEach(cell => {
+        console.log(count)
+        // Add style to the cell
+       if(c2==0){
+         cell.classList.add("mFont");
+        cell.width = "35%";
+        cell.valign = "top";
+        cell.style.padding = "5px";
+        cell.style.color = "#000000";
+        cell.style.fontFamily = "'Segoe UI', Arial, Helvetica, Sans Serif";
+        cell.style.fontSize = "11pt";
+        cell.style.textAlign = "left";
+        cell.style.borderTop = "1px solid #000000";
+        cell.style.borderLeft = "1px solid #000000";
+        c2++
+        cell.setAttribute("class", "mFont mpad");
+
+          cell.innerHTML=` <b>${cell.innerText}</b>`;
+
+       }else if (c2==1){
+        
+cell.style.padding = "5px";
+cell.style.color = "#000000";
+cell.style.fontFamily = "'Segoe UI', Arial, Helvetica, Sans Serif";
+cell.style.fontSize = "11pt";
+cell.style.textAlign = "left";
+cell.style.borderTop = "1px solid #000000";
+cell.style.borderLeft = "1px solid #000000";
+        cell.setAttribute("class", "mFont mpad");
+
+c2++
+       }else if(c2==2){
+
+cell.style.padding = "5px";
+cell.style.color = "#000000";
+cell.style.fontFamily = "'Segoe UI', Arial, Helvetica, Sans Serif";
+cell.style.fontSize = "11pt";
+cell.style.textAlign = "left";
+cell.style.borderTop = "1px solid #000000";
+cell.style.borderLeft = "1px solid #000000";
+cell.style.borderRight = "1px solid #000000";
+        cell.setAttribute("class", "mFont mpad");
+
+var rtxt = cell.innerText+"";
+console.log(rtxt)
+
+cell.innerHTML=null;
+cell.innerHTML=` <a href="${rtxt.split("+")[1] || "#"}">${rtxt.split("+")[0] || rtxt}</a>`;
+c2++
+       }
+
+
+       console.log("c2",c2)
+    });
+
+    }else{
+
+
+
+
+cells.forEach(cell => {
+        console.log(count)
+        // Add style to the cell
+       if(c2==0){
+         cell.classList.add("mFont");
+        cell.width = "35%";
+        cell.valign = "top";
+        cell.style.padding = "5px";
+        cell.style.color = "#000000";
+        cell.style.fontFamily = "'Segoe UI', Arial, Helvetica, Sans Serif";
+        cell.style.fontSize = "11pt";
+        cell.style.textAlign = "left";
+        cell.style.borderTop = "1px solid #000000";
+        cell.style.borderLeft = "1px solid #000000";
+        cell.setAttribute("class", "mFont mpad");
+
+          cell.innerHTML=` <b>${cell.innerText}</b>`;
+
+
+cell.style.backgroundColor = "#f2f2f2";
+        c2++
+       }else if (c2==1){
+        
+cell.style.padding = "5px";
+cell.style.color = "#000000";
+cell.style.fontFamily = "'Segoe UI', Arial, Helvetica, Sans Serif";
+cell.style.fontSize = "11pt";
+cell.style.textAlign = "left";
+cell.style.borderTop = "1px solid #000000";
+cell.style.borderLeft = "1px solid #000000";
+
+        cell.setAttribute("class", "mFont mpad");
+
+cell.style.backgroundColor = "#f2f2f2";
+c2++
+       }else if(c2==2){
+
+cell.style.padding = "5px";
+cell.style.color = "#000000";
+cell.style.fontFamily = "'Segoe UI', Arial, Helvetica, Sans Serif";
+cell.style.fontSize = "11pt";
+cell.style.textAlign = "left";
+cell.style.borderTop = "1px solid #000000";
+cell.style.borderLeft = "1px solid #000000";
+cell.style.borderRight = "1px solid #000000";
+        cell.setAttribute("class", "mFont mpad");
+
+cell.style.backgroundColor = "#f2f2f2";
+
+var rtxt = cell.innerText ;
+console.log(rtxt)
+
+cell.innerHTML=null;
+cell.innerHTML=` <a href="${rtxt.split("+")[1] || "#"}">${rtxt.split("+")[0] || rtxt}</a>`;
+
+
+c2++
+       }
+
+
+       console.log("c2",c2)
+    });
+
+
+
+
+
+
+
+    }
+
+    count ++
+    
+}else {
+    count ++
+}
+   
+
+    
+});
+
+
+tableBody.deleteRow(0);
+
+let row = tableBody.querySelectorAll('tr');
+
+
+// Get the last row
+const lastRow = rows[rows.length - 1];
+
+// Add border-bottom style to each <td> in the last row
+lastRow.querySelectorAll('td').forEach(td => {
+  td.style.borderBottom = '1px solid black';
+});
+
+
+
+
+
+let newt = ` <table cellpadding="0" cellspacing="0" border="0" role="presentation" width="100%">${tableBody.innerHTML}</table>`;
+
+
+// Copy the modified HTML to the textarea
+document.getElementById("formTextarea").value = newt;
+}
+
+
+
+function createCell(text) {
+let cell = document.createElement("td");
+cell.innerHTML = text;
+cell.onclick = function() { addInput(this); };
+return cell;
+}
+
+function addRow() {
+let table = document.getElementById("alter");
+let newRow = table.insertRow(-1); // -1 appends to the end
+
+// Create three cells for the new row
+let cell1 = createCell("New Event");
+let cell2 = createCell("Date");
+let cell3 = createCell('<a href="#">Register</a>');
+
+newRow.appendChild(cell1);
+newRow.appendChild(cell2);
+newRow.appendChild(cell3);
+}
+
+function deleteLastRow() {
+let table = document.getElementById("alter");
+let rowCount = table.rows.length;
+
+// Prevent deleting the header row
+if (rowCount > 1) {
+    table.deleteRow(rowCount - 1); // Delete the last row
+} else {
+    alert("Cannot delete the header row or the last row.");
+}
+}
+
+function extractTable(inputValue) {
+const tableRegex = /<table cellpadding="0" cellspacing="0" border="0" role="presentation" width="100%">(.*?)<\/table>/s;
+const match = inputValue.match(tableRegex);
+if (match && match[0]) {
+    return match[0];
+} else {
+    return null; // Or handle the case where the table isn't found
+}
+}
+
+function submitForm() {
+let inputValue = document.getElementById("formTextarea").value;
+const extractedTable = extractTable(inputValue);
+
+if (extractedTable) {
+    // Create a temporary DOM element to parse the extracted table
+    let tempDiv = document.createElement('div');
+    tempDiv.innerHTML = extractedTable;
+
+    // Find all rows in the extracted table
+    let extractedRows = tempDiv.querySelectorAll('tr');
+
+    // Iterate through the rows and append them to the main table
+    let mainTable = document.getElementById("alter");
+    extractedRows.forEach(row => {
+        let newRow = mainTable.insertRow(-1);
+        for (let i = 0; i < row.cells.length; i++) {
+            let cell = row.cells[i];
+            let newCell = createCell(cell.innerHTML); // Use createCell to add functionality
+            newRow.appendChild(newCell);
+        }
+    });
+
+    console.log("Extracted Table HTML added to the main table.");
+    alert("Extracted Table HTML added to the main table.");
+} else {
+    alert("The specified table was not found in the input.");
+}
+}
+</script>
+
+<style>
+body {
+font-family: sans-serif;
+margin: 20px;
+background-color: #f8f9fa; /* Light background */
+}
+
+h2 {
+text-align: center;
+margin-bottom: 30px;
+color: #343a40; /* Darker heading color */
+}
+
+/* Button Container */
+.button-container {
+display: flex;
+justify-content: center; /* Center buttons horizontally */
+gap: 15px; /* Space between buttons */
+margin-bottom: 20px;
+}
+
+button {
+padding: 12px 24px;
+background-color: #007bff; /* Primary blue */
+color: white;
+border: none;
+cursor: pointer;
+border-radius: 8px;
+font-size: 16px;
+transition: background-color 0.3s ease, transform 0.2s ease; /* Smooth transitions */
+box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2); /* Subtle shadow */
+}
+
+button:hover {
+background-color: #0056b3; /* Darker blue on hover */
+transform: translateY(-2px); /* Slight lift on hover */
+}
+
+#alter {
+width: 90%; /* Wider table */
+margin: 0 auto;
+border-collapse: collapse;
+/* Remove extra styling */
+}
+
+th, td {
+border: 1px solid #000; /* Add basic border */
+padding: 8px;
+text-align: left;
+}
+
+.table-input {
+width: 100%;
+padding: 8px;
+border: 1px solid #ced4da; /* Softer border for inputs */
+box-sizing: border-box;
+font-size: 15px;
+border-radius: 5px;
+transition: border-color 0.2s ease;
+}
+
+.table-input:focus {
+border-color: #80bdff; /* Highlight on focus */
+outline: none; /* Remove default focus outline */
+box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25); /* Subtle shadow */
+}
+
+/* Form Container */
+.form-container {
+display: flex;
+flex-direction: column; /* Stack input and button vertically */
+align-items: center; /* Center items horizontally */
+gap: 10px;
+margin-top: 20px; /* Move below the table */
+}
+
+.form-textarea {
+padding: 12px;
+border: 1px solid #ced4da;
+border-radius: 5px;
+font-size: 18px;
+width: 805px; /* Specified width */
+height: 250px; /* Specified height */
+resize: none; /* Prevent resizing */
+}
+
+.form-submit {
+padding: 12px 24px;
+background-color: #28a745;
+color: white;
+border: none;
+cursor: pointer;
+border-radius: 5px;
+font-size: 16px;
+transition: background-color 0.3s ease;
+}
+
+.form-submit:hover {
+background-color: #218838;
+}
+</style>
+</head>
+<body>
+
+<h2>
+ Get SEB Table 
+
+
+</h2>
+
+<h3>cellpadding="0" cellspacing="0" border="0" role="presentation" width="100%"</table></h3>
+
+<div class="button-container">
+<button type="button" onclick="altertable()">Get code</button>
+<button type="button" onclick="addRow()">Add Row</button>
+<button type="button" onclick="deleteLastRow()">Delete Last Row</button>
+</div>
+
+<table id="alter">
+<thead>
+<tr style="background-color: grey; color: white; box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;">
+<th>Event</th>
+<th>Date</th>
+<th>Registration</th>
+</tr>
+</thead>
+<tbody>
+
+</tbody>
+</table>
+
+<!-- Form Container -->
+<div class="form-container">
+<textarea id="formTextarea" class="form-textarea" placeholder="Enter value"></textarea>
+<button type="button" class="form-submit" onclick="submitForm()">Submit</button>
+</div>
+
+</body>
+</html>
+
