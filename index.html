@@ -105,6 +105,30 @@ cell.style.borderLeft = "1px solid #000000";
         cell.setAttribute("class", "mFont mpad");
 
 c2++
+
+
+var rtext= cell.innerText+"";
+console.log(rtext,"new")
+
+if (rtext.includes("br")){
+
+    
+
+    rtext=rtext.replaceAll("br", `<br />`)
+// console.log(rtext)
+cell.innerHTML=null;
+cell.innerHTML=rtext;
+// console.log(cell)
+
+    console.log("muti events ")
+}else{
+    console.log("hhhhhhhhhhhhhhhhhhhhhhhhhhhhh")
+    console.log()
+}
+
+
+
+
        }else if(c2==2){
 
 cell.style.padding = "5px";
@@ -118,15 +142,51 @@ cell.style.borderRight = "1px solid #000000";
         cell.setAttribute("class", "mFont mpad");
 
 var rtxt = cell.innerText+"";
-console.log(rtxt)
+console.log(rtxt,"c2ke ")
+
+
+if(rtxt.includes("br")){
+    rtxt=rtxt.split("br")
+
+let new_innerText=``;
+
+
+
+for(let i=0;i<rtxt.length;i++){
+
+ 
+
+new_innerText= new_innerText+   `<a href="${rtxt[i].split("+")[1] || "#"}">${rtxt[i].split("+")[0] || rtxt[i]}</a> <br />`
+
+
+
+}
+
 
 cell.innerHTML=null;
-cell.innerHTML=` <a href="${rtxt.split("+")[1] || "#"}">${rtxt.split("+")[0] || rtxt}</a>`;
+cell.innerHTML=new_innerText;
+
+
+
+
+}else{
+
+
+    cell.innerHTML=null;
+cell.innerHTML=` <a href="${rtxt.split("+")[1] || "#"}">${rtxt.split("+")[0] || rtxt}</a><br />`;
+}
+
+
+
+
+
+
+
 c2++
        }
 
 
-       console.log("c2",c2)
+    //    console.log("c2",c2)
     });
 
     }else{
@@ -169,6 +229,37 @@ cell.style.borderLeft = "1px solid #000000";
 
 cell.style.backgroundColor = "#f2f2f2";
 c2++
+
+
+
+let rtext= cell.innerText+"";
+console.log(rtext,"new")
+
+if (rtext.includes("br")){
+
+// let multi_dates = rtext.split("br")
+
+// console.log(multi_dates)
+
+
+ rtext=rtext.replaceAll("br", `<br />`)
+// console.log(rtext)
+
+cell.innerHTML=null;
+cell.innerHTML=rtext;
+// console.log(cell)
+
+    console.log("muti events ")
+}else{
+    console.log("hhhhhhhhhhhhhhhhhhhhhhhhhhhhh")
+    console.log()
+}
+
+
+
+
+
+
        }else if(c2==2){
 
 cell.style.padding = "5px";
@@ -183,18 +274,46 @@ cell.style.borderRight = "1px solid #000000";
 
 cell.style.backgroundColor = "#f2f2f2";
 
-var rtxt = cell.innerText ;
+var rtxt = cell.innerText +"";
 console.log(rtxt)
 
+if(rtxt.includes("br")){
+    rtxt=rtxt.split("br")
+
+let new_innerText=``;
+
+
+
+for(let i=0;i<rtxt.length;i++){
+
+ 
+
+new_innerText= new_innerText+    `<a href="${rtxt[i].split("+")[1] || "#"}">${rtxt[i].split("+")[0] || rtxt[i]}</a> <br />`
+
+
+
+}
+
+
 cell.innerHTML=null;
-cell.innerHTML=` <a href="${rtxt.split("+")[1] || "#"}">${rtxt.split("+")[0] || rtxt}</a>`;
+cell.innerHTML=new_innerText;
+
+
+
+
+}else{
+
+
+    cell.innerHTML=null;
+cell.innerHTML=` <a href="${rtxt.split("+")[1] || "#"}">${rtxt.split("+")[0] || rtxt}</a><br />`;
+}
 
 
 c2++
        }
 
 
-       console.log("c2",c2)
+    //    console.log("c2",c2)
     });
 
 
