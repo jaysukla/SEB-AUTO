@@ -6,6 +6,32 @@
 <title>Table Alter program</title>
 
 <script>
+var FC1="44%";
+var FC2="40%";
+var FC3="28%";
+
+
+
+function SpanishCSS(){
+ FC1="44%";
+ FC2="35%";
+ FC3="38%";
+
+document.getElementById("spain").style.backgroundColor="grey";
+
+}
+
+function FrenchCSS(){
+ FC1="35%";
+ FC2="30%";
+ FC3="44%";
+
+document.getElementById("france").style.backgroundColor="grey";
+
+}
+
+
+
 function addInput(element) {
 // Get the current text content of the cell
 let textContent = element.textContent;
@@ -79,7 +105,7 @@ var c2=0;
         // Add style to the cell
        if(c2==0){
          cell.classList.add("mFont");
-       cell.style.width = "44%";
+       cell.style.width = FC1;
         cell.valign = "top";
         cell.style.padding = "5px";
         cell.style.color = "#000000";
@@ -95,7 +121,7 @@ var c2=0;
           cell.innerHTML=` <b>${cell.innerText}</b>`;
 
        }else if (c2==1){
-        cell.style.width = "35%";
+        cell.style.width = FC2;
 cell.style.padding = "5px";
 cell.style.color = "#000000";
 cell.style.fontFamily = "'Segoe UI', Arial, Helvetica, Sans Serif";
@@ -112,11 +138,11 @@ c2++
 var rtext= cell.innerText+"";
 console.log(rtext,"new")
 
-if (rtext.includes("br")){
+if (rtext.includes("BR")){
 
     
 
-    rtext=rtext.replaceAll("br", `<br />`)
+    rtext=rtext.replaceAll("BR", `<br /><br />`)
 // console.log(rtext)
 cell.innerHTML=null;
 cell.innerHTML=rtext;
@@ -132,7 +158,7 @@ cell.innerHTML=rtext;
 
 
        }else if(c2==2){
-cell.style.width = "38%";
+cell.style.width = FC3;
 cell.style.padding = "5px";
 cell.style.color = "#000000";
 cell.style.fontFamily = "'Segoe UI', Arial, Helvetica, Sans Serif";
@@ -149,8 +175,8 @@ var rtxt = cell.innerText+"";
 console.log(rtxt,"c2ke ")
 
 
-if(rtxt.includes("br")){
-    rtxt=rtxt.split("br")
+if(rtxt.includes("BR")){
+    rtxt=rtxt.split("BR")
 
 let new_innerText=``;
 
@@ -160,7 +186,7 @@ for(let i=0;i<rtxt.length;i++){
 
  
 
-new_innerText= new_innerText+   `<a href="${rtxt[i].split("+")[1] || "#"}">${rtxt[i].split("+")[0] || rtxt[i]}</a> <br />`
+new_innerText= new_innerText+   `<a href="${rtxt[i].split("+")[1] || "#"}">${rtxt[i].split("+")[0] || rtxt[i]}</a> <br /><br />`
 
 
 
@@ -203,7 +229,7 @@ cells.forEach(cell => {
         // Add style to the cell
        if(c2==0){
          cell.classList.add("mFont");
-        cell.style.width = "44%";
+        cell.style.width = FC1;
         cell.valign = "top";
         cell.style.padding = "5px";
         cell.style.color = "#000000";
@@ -221,7 +247,7 @@ cells.forEach(cell => {
 cell.style.backgroundColor = "#f2f2f2";
         c2++
        }else if (c2==1){
-        cell.style.width = "35%";
+        cell.style.width = FC2;
 cell.style.padding = "5px";
 cell.style.color = "#000000";
 cell.style.fontFamily = "'Segoe UI', Arial, Helvetica, Sans Serif";
@@ -241,14 +267,14 @@ c2++
 let rtext= cell.innerText+"";
 console.log(rtext,"new")
 
-if (rtext.includes("br")){
+if (rtext.includes("BR")){
 
 // let multi_dates = rtext.split("br")
 
 // console.log(multi_dates)
 
 
- rtext=rtext.replaceAll("br", `<br />`)
+ rtext=rtext.replaceAll("BR", `<br /><br />`)
 // console.log(rtext)
 
 cell.innerHTML=null;
@@ -267,7 +293,7 @@ cell.innerHTML=rtext;
 
 
        }else if(c2==2){
-cell.style.width = "38%";
+cell.style.width = FC3;
 cell.style.padding = "5px";
 cell.style.color = "#000000";
 cell.style.fontFamily = "'Segoe UI', Arial, Helvetica, Sans Serif";
@@ -285,8 +311,8 @@ cell.style.backgroundColor = "#f2f2f2";
 var rtxt = cell.innerText +"";
 console.log(rtxt)
 
-if(rtxt.includes("br")){
-    rtxt=rtxt.split("br")
+if(rtxt.includes("BR")){
+    rtxt=rtxt.split("BR")
 
 let new_innerText=``;
 
@@ -296,7 +322,7 @@ for(let i=0;i<rtxt.length;i++){
 
  
 
-new_innerText= new_innerText+    `<a href="${rtxt[i].split("+")[1] || "#"}">${rtxt[i].split("+")[0] || rtxt[i]}</a> <br />`
+new_innerText= new_innerText+    `<a href="${rtxt[i].split("+")[1] || "#"}">${rtxt[i].split("+")[0] || rtxt[i]}</a> <br /><br />`
 
 
 
@@ -555,6 +581,9 @@ background-color: #218838;
 
 <h3>cellpadding="0" cellspacing="0" border="0" role="presentation" width="100%"</table></h3>
 
+<button id="spain" onclick="SpanishCSS()"> Enable Spanish css</button>
+<button id="france" onclick="FrenchCSS()"> Enable French CSS</button>
+
 <div class="button-container">
 <button type="button" onclick="altertable()">Get code</button>
 <button type="button" onclick="addRow()">Add Row</button>
@@ -582,4 +611,3 @@ background-color: #218838;
 
 </body>
 </html>
-
